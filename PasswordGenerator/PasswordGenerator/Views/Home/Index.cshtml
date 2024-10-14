@@ -3,6 +3,45 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Password Generator</h1>
+
+    <form method="post" action="~/Home/GeneratePassword" >
+        <div class="card">
+            <div class="text-body card-text">
+                <span id="result"></span>
+                <button class="btn btn-secondary" id="clipboard">
+                    Copy
+                </button>
+            </div>
+
+            <div class="cardparametrs-list">
+                <div class="card-parametr">
+                    <label class="card-parameter-name">Password length</label>
+                    <input class="card-parameter-input" type="number" id="passwordLength" min="4" max="20" value="20" />
+                </div>
+                <div class="card-parametr">
+                    <label class="card-parameter-name">Include uppercase letters</label>
+                    <input class="card-parameter-input" type="checkbox" id="uppercase" checked />
+                </div>
+                <div class="card-parametr">
+                    <label class="card-parameter-name">Include lowercase letters</label>
+                    <input class="card-parameter-input" type="checkbox" id="lowercase" checked />
+                </div>
+                <div class="card-parametr">
+                    <label class="card-parameter-name">Include numbers</label>
+                    <input class="card-parameter-input" type="checkbox" id="numbers" checked />
+                </div>
+                <div class="card-parametr">
+                    <label class="card-parameter-name">Include symbols</label>
+                    <input class="card-parameter-input" type="checkbox" id="symbols" checked />
+                </div>
+            </div>
+
+            <div class="card-button" id="cardButton">
+                <button class="btn btn-primary" id="buttonSubmit"> Generate password </button>
+            </div>
+        </div>
+    </form>
+    
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
