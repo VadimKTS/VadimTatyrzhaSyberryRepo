@@ -23,6 +23,12 @@ namespace PasswordGenerator.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult GoToPasswordGenerator()
+        {
+            return RedirectToAction("PasswordGenerator", "Password");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

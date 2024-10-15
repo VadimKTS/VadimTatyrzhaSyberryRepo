@@ -13,7 +13,8 @@ namespace PasswordGenerator.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult PasswordGenerator()
         {
             return View();
         }
