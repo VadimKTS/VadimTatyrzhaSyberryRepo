@@ -16,28 +16,46 @@ namespace PasswordGenerator.Controllers
         [HttpGet]
         public IActionResult PasswordGenerator()
         {
-            return View();
+            return View(new PasswordOptionsModel());
         }
 
         [HttpPost]
-        public IActionResult GeneratePassword(PasswordOptionsModel model)
+        public IActionResult Generate(PasswordOptionsModel optionsModel)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                var password = GeneratePassword(optionsModel);
+                ViewBag.Password = password;
+                return View("PasswordGenerator", optionsModel);
             }
             return RedirectToAction("Error");
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+                
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private string GeneratePassword(PasswordOptionsModel optionsModel)
+        {
+            const string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowercase = "abcdefghijklmnopqrstuvwxyz";
+            const string numbers = "1234567890";
+            const string symbols = "!@#$%^&*()_+[]{}|:;,.<>?";
+
+            string charset = "";
+            if (optionsModel.IncludeUppercaseLetters) charset += uppercase;
+            if (optionsModel.IncludeLowercaseLetters) charset += lowercase;
+            if (optionsModel.IncludeNumbers) charset += numbers;
+            if (optionsModel.IncludeSymbols) charset += symbols;
+
+            var random = new Random();
+            var passwordChar = Enumerable.Repeat(charset, optionsModel.PasswordLength)
+                .Select(str => str[random.Next(str.Length)])
+                .ToArray();
+
+            return new string(passwordChar);
         }
     }
 }
