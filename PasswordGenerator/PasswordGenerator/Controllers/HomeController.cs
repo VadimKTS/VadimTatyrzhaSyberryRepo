@@ -33,7 +33,13 @@ namespace PasswordGenerator.Controllers
         public IActionResult GoToCurrencyConverter()
         {
             return RedirectToAction("CurrencyConverter", "CurrencyConverter");
-        } 
+        }
+
+        [HttpGet]
+        public IActionResult GoToBookFinder()
+        {
+            return RedirectToAction("BookFinder", "Book");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -17,7 +17,7 @@ namespace PasswordGenerator.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult BookFinder()
         {
             return View();
         }
@@ -28,10 +28,10 @@ namespace PasswordGenerator.Controllers
             if (string.IsNullOrWhiteSpace(query))
             {
                 ModelState.AddModelError(string.Empty, "Search query is empty.");
-                return View("Index");
+                return View("BookFinder");
             }
             var books = await _bookService.SearchBooksAsync(query);
-            return View("Index", books);
+            return View("BookFinder", books);
         }
                       
 
