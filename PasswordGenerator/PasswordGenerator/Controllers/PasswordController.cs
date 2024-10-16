@@ -30,7 +30,7 @@ namespace PasswordGenerator.Controllers
             }
             return RedirectToAction("Error");
         }
-                
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -43,10 +43,10 @@ namespace PasswordGenerator.Controllers
             const string lowercase = "abcdefghijklmnopqrstuvwxyz";
             const string numbers = "1234567890";
             const string symbols = "!@#$%^&*()_+[]{}|:;,.<>?";
-
             string charset = "";
-            if (optionsModel.IncludeUppercaseLetters) charset += uppercase;
-            if (optionsModel.IncludeLowercaseLetters) charset += lowercase;
+
+            if (optionsModel.IncludeUppercase) charset += uppercase;
+            if (optionsModel.IncludeLowercase) charset += lowercase;
             if (optionsModel.IncludeNumbers) charset += numbers;
             if (optionsModel.IncludeSymbols) charset += symbols;
 
