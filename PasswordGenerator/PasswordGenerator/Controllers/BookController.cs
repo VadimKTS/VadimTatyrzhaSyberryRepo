@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PasswordGenerator.Models;
+using PasswordGenerator.Services.Interface;
 using System.Diagnostics;
 
 namespace PasswordGenerator.Controllers
@@ -7,15 +8,30 @@ namespace PasswordGenerator.Controllers
     public class BookController : Controller
     {
         private readonly ILogger<BookController> _logger;
+        private readonly IBookService _bookService;
 
-        public BookController(ILogger<BookController> logger)
+        public BookController(ILogger<BookController> logger, IBookService bookService)
         {
             _logger = logger;
+            _bookService = bookService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Search(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                ModelState.AddModelError(string.Empty, "Search query is empty.");
+                return View("Index");
+            }
+            var books = await _bookService.SearchBooksAsync(query);
+            return View("Index", books);
         }
                       
 
