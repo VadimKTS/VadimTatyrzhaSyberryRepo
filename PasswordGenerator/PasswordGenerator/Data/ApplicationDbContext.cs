@@ -14,12 +14,12 @@ namespace PasswordGenerator.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Book>().HasData(
-                new Book { Id = 1, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", PublishedDate = "1925", Picture = "default" },
-                new Book { Id = 2, Title = "To Kill a Mockingbird", Author = "Harper Lee", PublishedDate = "1960", Picture = "default" },
-                new Book { Id = 3, Title = "1984", Author = "George Orwell", PublishedDate = "1949", Picture = "default" },
-                new Book { Id = 4, Title = "The Master and Margarita", Author = "Mikhail Bulgakov", PublishedDate = "1940", Picture = "default" },
-                new Book { Id = 5, Title = "The Lord of the Rings", Author = "John Ronald Reuel Tolkien", PublishedDate = "1949", Picture = "default" }
+            modelBuilder.Entity<BookModel>().HasData(
+                new BookModel { Id = 1, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", PublishedDate = "1925", Picture = "default" },
+                new BookModel { Id = 2, Title = "To Kill a Mockingbird", Author = "Harper Lee", PublishedDate = "1960", Picture = "default" },
+                new BookModel { Id = 3, Title = "1984", Author = "George Orwell", PublishedDate = "1949", Picture = "default" },
+                new BookModel { Id = 4, Title = "The Master and Margarita", Author = "Mikhail Bulgakov", PublishedDate = "1940", Picture = "default" },
+                new BookModel { Id = 5, Title = "The Lord of the Rings", Author = "John Ronald Reuel Tolkien", PublishedDate = "1949", Picture = "default" }
             );
         }
     }

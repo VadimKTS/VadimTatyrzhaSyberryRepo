@@ -8,6 +8,6 @@ namespace PasswordGenerator.Models
         public string SourceCurrency { get; set; }
         public string DestinationCurrency { get; set; }
         public decimal ConvertedAmount { get; set; }
-        public IEnumerable<SelectListItem> Currencies { get; set; }
+        public IEnumerable<SelectListItem> Currencies { get; set; } = Enumerable.Empty<SelectListItem>();
     }
 }

@@ -19,7 +19,7 @@
         @foreach (var book in Model)
         {
             <li>
-                <img src="@book.Picture" alt="Book cover" width="50" height="75" />
+                @*<img src="@book.Picture" alt="Book cover" width="50" height="75" />*@
                 <strong>@book.Title</strong> by @book.Author (@book.PublishedDate)
             </li>
         }
