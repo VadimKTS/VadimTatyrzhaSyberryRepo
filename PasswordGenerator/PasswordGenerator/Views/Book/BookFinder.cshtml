@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BookModel>
+@{
+    ViewData["Title"] = "Book Search";
+}
+
+<h1>Book Search</h1>
+
+<form asp-controller="Book" asp-action="Search" method="post">
+    <div>
+        <label for="query">Search:</label>
+        <input type="text" name="query" id="query" required />
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var book in Model)
+        {
+            <li>
+                @*<img src="@book.Picture" alt="Book cover" width="50" height="75" />*@
+                <strong>@book.Title</strong> by @book.Author (@book.PublishedDate)
+            </li>
+        }
+    </ul>
+}
+else if (Model != null)
+{
+    <p>No books found.</p>
+}
+

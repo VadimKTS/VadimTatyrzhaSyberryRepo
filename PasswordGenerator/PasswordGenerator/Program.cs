@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using PasswordGenerator.Data;
 using PasswordGenerator.Services.Interface;
 using PasswordGenerator.Services.Service;
 
@@ -9,9 +11,14 @@ namespace PasswordGenerator
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Database connection
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<ICurrencyService, CurrencyService>();
+            builder.Services.AddTransient<IBookService, BookService>();
 
             var app = builder.Build();
 
