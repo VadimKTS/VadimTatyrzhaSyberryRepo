@@ -25,7 +25,18 @@ namespace PasswordGenerator.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Convert(CurrencyConverterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var rate = _currencyService.GetExchangeRate(model.SourceCurrency, model.DestinationCurrency);
+                model.ConvertedAmount = model.Amount * rate; 
+            }
 
+            model.Currencies = GetCurrencies(); 
+            return View("Index", model);
+        }
 
         private IEnumerable<SelectListItem> GetCurrencies()
         {
