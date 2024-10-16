@@ -16,7 +16,7 @@ namespace PasswordGenerator.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult CurrencyConverter()
         {
             var model = new CurrencyConverterModel
             {
@@ -35,7 +35,7 @@ namespace PasswordGenerator.Controllers
             }
 
             model.Currencies = GetCurrencies(); 
-            return View("Index", model);
+            return View("CurrencyConverter", model);
         }
 
         private IEnumerable<SelectListItem> GetCurrencies()
