@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PasswordGenerator.Models;
 using PasswordGenerator.Services.Interface;
 
 namespace PasswordGenerator.Controllers
@@ -13,6 +15,27 @@ namespace PasswordGenerator.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var model = new CurrencyConverterModel
+            {
+                Currencies = GetCurrencies() 
+            };
+            return View(model);
+        }
 
+
+
+        private IEnumerable<SelectListItem> GetCurrencies()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "USD", Text = "USD" }, 
+                new SelectListItem { Value = "EUR", Text = "EUR" },
+                new SelectListItem { Value = "BYN", Text = "BYN" },
+                new SelectListItem { Value = "RUB", Text = "RUB" },
+            };
+        }
     }
 }
