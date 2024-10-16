@@ -18,6 +18,7 @@ namespace PasswordGenerator
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<ICurrencyService, CurrencyService>();
+            builder.Services.AddTransient<IBookService, BookService>();
 
             var app = builder.Build();
 
