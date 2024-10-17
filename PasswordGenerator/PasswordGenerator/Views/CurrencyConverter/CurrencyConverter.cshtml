@@ -1,0 +1,32 @@
+﻿@model CurrencyConverterModel
+@{
+    ViewData["Title"] = "Currency Converter";
+}
+
+<h1>Currency Converter</h1>
+
+<form asp-controller="CurrencyConverter" asp-action="Convert" method="post">
+    <div>
+        <label>Amount:</label>
+        <input asp-for="Amount" type="number" step="0.01" min="0" max="999999999" required />
+    </div>
+    <div>
+        <label>From:</label>
+        <select asp-for="SourceCurrency" asp-items="Model.Currencies"></select>
+    </div>
+    <div>
+        <label>To:</label>
+        <select asp-for="DestinationCurrency" asp-items="Model.Currencies"></select>
+    </div>
+    <div>
+        <button type="submit">Convert</button>
+    </div>
+</form>
+
+@if (Model.ConvertedAmount != 0)
+{
+    <h2>Converted Amount: @Model.ConvertedAmount.ToString("0.00")</h2>
+}
+    
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

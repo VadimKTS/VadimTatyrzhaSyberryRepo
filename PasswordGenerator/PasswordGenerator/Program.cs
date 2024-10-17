@@ -1,3 +1,6 @@
+using PasswordGenerator.Services.Interface;
+using PasswordGenerator.Services.Service;
+
 namespace PasswordGenerator
 {
     public class Program
@@ -8,6 +11,7 @@ namespace PasswordGenerator
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddTransient<ICurrencyService, CurrencyService>();
 
             var app = builder.Build();
 

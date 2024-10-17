@@ -27,7 +27,13 @@ namespace PasswordGenerator.Controllers
         public IActionResult GoToPasswordGenerator()
         {
             return RedirectToAction("PasswordGenerator", "Password");
-        }
+        } 
+
+        [HttpGet]
+        public IActionResult GoToCurrencyConverter()
+        {
+            return RedirectToAction("CurrencyConverter", "CurrencyConverter");
+        } 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
