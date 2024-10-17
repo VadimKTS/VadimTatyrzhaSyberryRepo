@@ -7,10 +7,11 @@ namespace PasswordGenerator.Services.Service
         public decimal GetExchangeRate(string sourceCurrency, string destinationCurrency)
         {
             // fake course for simplyfy
-            if (sourceCurrency == destinationCurrency)
-                return 1m;
+            //if (sourceCurrency == destinationCurrency)
+            //    return 1m;
 
-            return 0.85m;
+            //return 0.85m;
+
         }
     }
 }
