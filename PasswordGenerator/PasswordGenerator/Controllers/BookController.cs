@@ -31,7 +31,19 @@ namespace PasswordGenerator.Controllers
                 return View("BookFinder");
             }
             var books = await _bookService.SearchBooksAsync(query);
-            return View("BookFinder", books);
+            var result = new List<BookViewModel>();
+            foreach (var book in books)                 // autoMapper needed
+            {
+                var bookModel = new BookViewModel() 
+                {
+                    Author = book.Author,
+                    Title = book.Title,
+                    PublishedDate = book.PublishedDate,    
+                    Picture = book.Picture,
+                };
+                result.Add(bookModel);
+            }
+            return View("BookFinder", result);
         }
                       
 
