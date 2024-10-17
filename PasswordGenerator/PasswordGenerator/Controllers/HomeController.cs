@@ -41,6 +41,12 @@ namespace PasswordGenerator.Controllers
             return RedirectToAction("BookFinder", "Book");
         }
 
+        [HttpGet]
+        public IActionResult GoToCalculator()
+        {
+            return RedirectToAction("Calculator", "Calculator");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
