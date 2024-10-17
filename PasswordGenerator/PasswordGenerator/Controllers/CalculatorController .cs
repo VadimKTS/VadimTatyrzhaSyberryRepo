@@ -16,7 +16,7 @@ namespace PasswordGenerator.Controllers
         [HttpGet]
         public IActionResult Calculator()
         {
-            return View();
+            return View(new CalculatorModel());
         }
 
         [HttpPost]
@@ -24,7 +24,37 @@ namespace PasswordGenerator.Controllers
         {
             try
             {
-                //calculate logic
+                switch (calculatorModel.Operation)
+                {
+                    case "Add":
+                        calculatorModel.Result = calculatorModel.Number1 + calculatorModel.Number2;
+                        break;
+                    case "Subtract":
+                        calculatorModel.Result = calculatorModel.Number1 - calculatorModel.Number2;
+                        break;
+                    case "Multiply":
+                        calculatorModel.Result = calculatorModel.Number1 * calculatorModel.Number2;
+                        break;
+                    case "Divide":
+                        if (calculatorModel.Number2 != 0)
+                        {
+                            calculatorModel.Result = calculatorModel.Number1 / calculatorModel.Number2;
+                        }
+                        else
+                        {
+                            calculatorModel.Error = "Division by zero is not allowed.";
+                        }
+                        break;
+                    case "Power":
+                        calculatorModel.Result = Math.Pow(calculatorModel.Number1, calculatorModel.Number2);
+                        break;
+                    case "SquareRoot":
+                        calculatorModel.Result = Math.Sqrt(calculatorModel.Number1);
+                        break;
+                    default:
+                        calculatorModel.Error = "Invalid operation.";
+                        break;
+                }
 
             }
             catch (Exception ex)

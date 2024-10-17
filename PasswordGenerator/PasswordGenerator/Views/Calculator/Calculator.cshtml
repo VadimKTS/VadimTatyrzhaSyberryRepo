@@ -9,8 +9,38 @@
     
     <div class="calculator-card">
         <form asp-controller="Calculator" asp-action="Calculate" method="post">
-            @*Calculator interface*@
+            <div>
+                <label>Number 1:</label>
+                <input asp-for="Number1" type="number" step="0.01" required />
+            </div>
+            <div>
+                <label>Number 2:</label>
+                <input asp-for="Number2" type="number" step="0.01" required />
+            </div>
+            <div>
+                <label>Operation:</label>
+                <select asp-for="Operation">
+                    <option value="Add">Add</option>
+                    <option value="Subtract">Subtract</option>
+                    <option value="Multiply">Multiply</option>
+                    <option value="Divide">Divide</option>
+                    <option value="Power">Power</option>
+                    <option value="SquareRoot">Square Root</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Calculate</button>
+            </div>
         </form>
+
+        @if (!string.IsNullOrEmpty(Model.Error))
+        {
+            <p style="color:red">@Model.Error</p>
+        }
+        else if (Model.Result != 0)
+        {
+            <h2>Result: @Model.Result</h2>
+        }
     </div>
     
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
