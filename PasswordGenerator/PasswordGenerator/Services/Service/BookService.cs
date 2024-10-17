@@ -1,24 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PasswordGenerator.Data;
-using PasswordGenerator.Models;
+﻿using PasswordGenerator.Data.Entity;
+using PasswordGenerator.Data.Repositiries;
 using PasswordGenerator.Services.Interface;
 
 namespace PasswordGenerator.Services.Service
 {
-    public class BookService : IBookService
+    public class BookService : ServiceConstructor, IBookService
     {
-        private readonly ApplicationDbContext _context;
-
-        public BookService(ApplicationDbContext context)
+        public BookService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _context = context;
+
         }
 
-        public async Task<IEnumerable<BookModel>> SearchBooksAsync(string query)
+        public async Task<IEnumerable<Book>> SearchBooksAsync(string query)
         {
-            return await _context.Books
-                                 .Where(b => b.Title.Contains(query) || b.Author.Contains(query))
-                                 .ToListAsync();
+            var allBooks = await _unitOfWork.Books.GetAllAsync();
+            return allBooks.Where(b => b.Title.Contains(query) ||
+                                        b.Author.Contains(query)).ToList();
         }
     }
 }

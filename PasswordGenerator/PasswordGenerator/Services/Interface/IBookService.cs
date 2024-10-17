@@ -1,9 +1,9 @@
-﻿using PasswordGenerator.Models;
+﻿using PasswordGenerator.Data.Entity;
 
 namespace PasswordGenerator.Services.Interface
 {
     public interface IBookService
     {
-        Task<IEnumerable<BookModel>> SearchBooksAsync(string query);
+        Task<IEnumerable<Book>> SearchBooksAsync(string query);
     }
 }

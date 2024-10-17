@@ -20,7 +20,7 @@ namespace PasswordGenerator.Data.Repositiries.Services
             await _dbSet.AddAsync(entity);
             await _dbcontext.SaveChangesAsync();
         }
-        public virtual async Task<List<T>> GetAllAsync(T entity)
+        public virtual async Task<List<T>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
         }

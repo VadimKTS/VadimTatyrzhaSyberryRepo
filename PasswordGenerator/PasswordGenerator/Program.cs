@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PasswordGenerator.Data;
+using PasswordGenerator.Data.Repositiries;
+using PasswordGenerator.Data.Repositiries.Interfaces;
+using PasswordGenerator.Data.Repositiries.Services;
 using PasswordGenerator.Services.Interface;
 using PasswordGenerator.Services.Service;
 
@@ -17,8 +20,10 @@ namespace PasswordGenerator
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddTransient<ICurrencyService, CurrencyService>();
             builder.Services.AddTransient<IBookService, BookService>();
+
 
             var app = builder.Build();
 

@@ -5,7 +5,7 @@ namespace PasswordGenerator.Data.Repositiries.Interfaces
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
-        Task<List<T>> GetAllAsync(T entity);
+        Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(long id);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
