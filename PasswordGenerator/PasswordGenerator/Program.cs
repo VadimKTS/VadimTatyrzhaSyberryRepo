@@ -24,6 +24,8 @@ namespace PasswordGenerator
             builder.Services.AddTransient<ICurrencyService, CurrencyService>();
             builder.Services.AddTransient<IBookService, BookService>();
 
+            // Register HttpClient
+            builder.Services.AddHttpClient();
 
             var app = builder.Build();
 

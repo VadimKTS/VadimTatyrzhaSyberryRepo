@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.IdentityModel.Tokens;
 using PasswordGenerator.Models;
 using PasswordGenerator.Services.Interface;
 
@@ -26,12 +27,16 @@ namespace PasswordGenerator.Controllers
         }
 
         [HttpPost]
-        public IActionResult Convert(CurrencyConverterModel model)
+        public async Task<IActionResult> Convert(CurrencyConverterModel model)
         {
             if (ModelState.IsValid)
             {
-                var rate = _currencyService.GetExchangeRate(model.SourceCurrency, model.DestinationCurrency);
-                model.ConvertedAmount = model.Amount * rate; 
+                var rate = await _currencyService.GetExchangeRateAsync(model.SourceCurrency, model.DestinationCurrency);
+                if (!rate.errorMessage.IsNullOrEmpty())
+                {
+                    return BadRequest(rate.errorMessage);
+                }
+                model.ConvertedAmount = (decimal)(model.Amount * rate.Cur_OfficialRate); 
             }
 
             model.Currencies = GetCurrencies(); 

@@ -1,7 +1,9 @@
-﻿namespace PasswordGenerator.Services.Interface
+﻿using PasswordGenerator.Data.Entity;
+
+namespace PasswordGenerator.Services.Interface
 {
     public interface ICurrencyService
     {
-        decimal GetExchangeRate(string sourceCurrency, string destinationCurrency);
+        Task<NbrbRate> GetExchangeRateAsync(string sourceCurrency, string destinationCurrency);
     }
 }
