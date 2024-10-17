@@ -9,7 +9,7 @@ namespace PasswordGenerator.Data.Repositiries.Services
         protected readonly ApplicationDbContext _dbcontext;
         protected DbSet<T> _dbSet;
 
-        protected BaseRepository(ApplicationDbContext dbcontext)
+        public BaseRepository(ApplicationDbContext dbcontext)
         {
             _dbcontext = dbcontext;
             _dbSet = _dbcontext.Set<T>();

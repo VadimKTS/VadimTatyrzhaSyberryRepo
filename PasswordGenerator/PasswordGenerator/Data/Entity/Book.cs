@@ -2,7 +2,7 @@
 
 namespace PasswordGenerator.Data.Entity
 {
-    public class Book
+    public class Book : BaseEntity
     {
         [Key]
         public int Id { get; set; }
