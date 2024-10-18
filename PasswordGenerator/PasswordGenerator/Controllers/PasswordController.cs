@@ -45,6 +45,8 @@ namespace PasswordGenerator.Controllers
             const string symbols = "!@#$%^&*()_+[]{}|:;,.<>?";
             string charset = "";
 
+
+            
             if (optionsModel.IncludeUppercase) charset += uppercase;
             if (optionsModel.IncludeLowercase) charset += lowercase;
             if (optionsModel.IncludeNumbers) charset += numbers;

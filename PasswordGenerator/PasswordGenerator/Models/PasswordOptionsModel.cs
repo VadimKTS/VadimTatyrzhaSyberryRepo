@@ -5,6 +5,7 @@ namespace PasswordGenerator.Models
     public class PasswordOptionsModel
     {
         [Required]
+        [Range (4, 20)]
         public int PasswordLength { get; set; }
         public bool IncludeUppercase { get; set; }
         public bool IncludeLowercase { get; set; }
